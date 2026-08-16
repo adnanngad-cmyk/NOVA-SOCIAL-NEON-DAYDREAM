@@ -1,0 +1,61 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nova Social — Neon Daydream</title>
+<style>
+body{font-family:system-ui;max-width:700px;margin:auto;padding:28px 20px;background:#111;color:#eee}
+.card{background:#1d1d1d;padding:22px;border-radius:18px}
+button{background:#1db954;border:0;border-radius:999px;padding:14px 20px;font-weight:700;font-size:16px}
+#log{white-space:pre-wrap;line-height:1.45;margin-top:18px;font-size:14px}
+</style></head><body>
+<h1>NOVA SOCIAL — NEON DAYDREAM</h1>
+<p>Upbeat synth-pop · nu-disco · indie dance · electro-pop · funk</p>
+<div class="card"><button id="go">Connect Spotify & Create Playlist</button><div id="log"></div></div>
+<script>
+const CLIENT_ID="2f2c786f3aa9402eb04552e9e5376cb1";
+const REDIRECT_URI=location.origin+location.pathname;
+const TRACKS=[{"artist": "Roosevelt", "title": "Fever"}, {"artist": "Parcels", "title": "Tieduprightnow"}, {"artist": "L'Impératrice", "title": "Vanille fraise"}, {"artist": "Jungle", "title": "Keep Moving"}, {"artist": "Phoenix", "title": "Lisztomania"}, {"artist": "Men I Trust", "title": "Tailwhip"}, {"artist": "Roosevelt", "title": "Montreal"}, {"artist": "Tame Impala", "title": "Borderline"}, {"artist": "L'Impératrice", "title": "Agitations tropicales"}, {"artist": "Parcels", "title": "Lightenup"}, {"artist": "Poolside", "title": "Do You Believe"}, {"artist": "Franc Moody", "title": "Dopamine"}, {"artist": "Still Woozy", "title": "Goodie Bag"}, {"artist": "Mild High Club", "title": "Homage"}, {"artist": "Toro y Moi", "title": "Ordinary Pleasure"}, {"artist": "Chromeo", "title": "Jealous (I Ain't With It)"}, {"artist": "Jungle", "title": "Casio"}, {"artist": "Parcels", "title": "Overnight"}, {"artist": "Roosevelt", "title": "Moving On"}, {"artist": "L'Impératrice", "title": "Anomalie bleue"}, {"artist": "Franc Moody", "title": "Dream in Colour"}, {"artist": "Breakbot", "title": "Baby I'm Yours"}, {"artist": "Tuxedo", "title": "Do It"}, {"artist": "Kaytranada", "title": "Lite Spots"}, {"artist": "Kaytranada", "title": "You're the One"}, {"artist": "Metronomy", "title": "The Look"}, {"artist": "Phoenix", "title": "1901"}, {"artist": "Two Door Cinema Club", "title": "What You Know"}, {"artist": "Friendly Fires", "title": "Paris"}, {"artist": "Hot Chip", "title": "Ready for the Floor"}, {"artist": "Jessie Ware", "title": "What's Your Pleasure?"}, {"artist": "Jessie Ware", "title": "Free Yourself"}, {"artist": "Dua Lipa", "title": "Levitating"}, {"artist": "Dua Lipa", "title": "Hallucinate"}, {"artist": "Robyn", "title": "Dancing On My Own"}, {"artist": "Robyn", "title": "Call Your Girlfriend"}, {"artist": "Carly Rae Jepsen", "title": "Run Away With Me"}, {"artist": "Kylie Minogue", "title": "Magic"}, {"artist": "Róisín Murphy", "title": "Murphy's Law"}, {"artist": "SG Lewis", "title": "Chemicals"}, {"artist": "SG Lewis", "title": "Warm"}, {"artist": "Roosevelt", "title": "Sign"}, {"artist": "Roosevelt", "title": "Under the Sun"}, {"artist": "The Knocks", "title": "Ride or Die"}, {"artist": "Chromeo", "title": "Fancy Footwork"}, {"artist": "Polo & Pan", "title": "Canopée"}, {"artist": "Polo & Pan", "title": "Dorado"}, {"artist": "L'Impératrice", "title": "Sonate pacifique"}, {"artist": "La Femme", "title": "Où va le monde"}, {"artist": "Parcels", "title": "Somethinggreater"}, {"artist": "Khruangbin", "title": "Time (You and I)"}, {"artist": "Khruangbin", "title": "Maria También"}, {"artist": "Jungle", "title": "Back On 74"}, {"artist": "Jungle", "title": "Heavy, California"}, {"artist": "Unknown Mortal Orchestra", "title": "Hunnybee"}, {"artist": "Toro y Moi", "title": "Ordinary Pleasure"}, {"artist": "Washed Out", "title": "Feel It All Around"}, {"artist": "Neon Indian", "title": "Polish Girl"}, {"artist": "Tame Impala", "title": "The Less I Know the Better"}, {"artist": "Men I Trust", "title": "Show Me How"}, {"artist": "L'Impératrice", "title": "Voodoo?"}, {"artist": "Parcels", "title": "Gamesofluck"}, {"artist": "Roosevelt", "title": "Feels Right"}, {"artist": "Jungle", "title": "Busy Earnin'"}, {"artist": "Franc Moody", "title": "Skin on Skin"}, {"artist": "Tuxedo", "title": "Fux with the Tux"}, {"artist": "Breakbot", "title": "Get Lost"}, {"artist": "Chromeo", "title": "Old 45's"}, {"artist": "Kaytranada", "title": "Glowed Up"}, {"artist": "SG Lewis", "title": "Impact"}, {"artist": "Jessie Ware", "title": "Spotlight"}, {"artist": "Róisín Murphy", "title": "Something More"}, {"artist": "Hot Chip", "title": "Over and Over"}, {"artist": "Metronomy", "title": "Love Letters"}, {"artist": "Phoenix", "title": "If I Ever Feel Better"}, {"artist": "L'Impératrice", "title": "Peur des filles"}, {"artist": "Roosevelt", "title": "Ordinary Love"}, {"artist": "Parcels", "title": "Free"}, {"artist": "Jungle", "title": "Problemz"}, {"artist": "Poolside", "title": "Harvest Moon"}, {"artist": "Poolside", "title": "Feel Alright"}, {"artist": "Washed Out", "title": "Eyes Be Closed"}, {"artist": "Tame Impala", "title": "Is It True"}, {"artist": "Mild Minds", "title": "Movements"}, {"artist": "Roosevelt", "title": "Night Moves"}, {"artist": "Jessie Ware", "title": "Remember Where You Are"}, {"artist": "Jessie Ware", "title": "Spotlight"}, {"artist": "Robyn", "title": "Honey"}, {"artist": "Kylie Minogue", "title": "Say Something"}, {"artist": "Carly Rae Jepsen", "title": "Want You in My Room"}, {"artist": "Chromeo", "title": "Come Alive"}, {"artist": "Jungle", "title": "Truth"}, {"artist": "Parcels", "title": "Overnight"}, {"artist": "L'Impératrice", "title": "Vacances"}, {"artist": "Polo & Pan", "title": "Nanã"}, {"artist": "Roosevelt", "title": "Sign"}, {"artist": "SG Lewis", "title": "One More"}, {"artist": "Kaytranada", "title": "Need It"}, {"artist": "Franc Moody", "title": "Move Me"}, {"artist": "Jessie Ware", "title": "Free Yourself"}];
+const log=x=>document.querySelector("#log").textContent+=x+"\n";
+const rnd=n=>{let a=new Uint8Array(n);crypto.getRandomValues(a);return btoa(String.fromCharCode(...a)).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")};
+async function sha(s){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(s))}
+function b64(b){return btoa(String.fromCharCode(...new Uint8Array(b))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}
+async function auth(){
+ let v=rnd(96), st=rnd(32);sessionStorage.v=v;sessionStorage.st=st;
+ let ch=b64(await sha(v));
+ let p=new URLSearchParams({response_type:"code",client_id:CLIENT_ID,scope:"playlist-modify-private",redirect_uri:REDIRECT_URI,state:st,code_challenge_method:"S256",code_challenge:ch});
+ location.href="https://accounts.spotify.com/authorize?"+p;
+}
+async function api(token,url,opt={}){
+ let h=Object.assign({Authorization:"Bearer "+token},opt.headers||{});
+ let r=await fetch(url,Object.assign({},opt,{headers:h}));
+ if(!r.ok)throw Error(r.status+" "+await r.text()); return r.status===204?null:r.json();
+}
+async function token(code){
+ let b=new URLSearchParams({grant_type:"authorization_code",code,redirect_uri:REDIRECT_URI,client_id:CLIENT_ID,code_verifier:sessionStorage.v});
+ let r=await fetch("https://accounts.spotify.com/api/token",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:b});
+ if(!r.ok)throw Error(await r.text());return (await r.json()).access_token;
+}
+async function search(t,a){
+ let p=new URLSearchParams({q:`track:"${t}" artist:"${a}"`,type:"track",limit:"10",market:"ID"});
+ let d=await api(T,"https://api.spotify.com/v1/search?"+p),x=d.tracks.items;
+ if(!x.length)return null;
+ let n=s=>s.toLowerCase().replace(/[^a-z0-9]+/g,""),na=n(a),nt=n(t);
+ return x.sort((u,v)=>score(v)-score(u))[0];
+ function score(i){let sa=n(i.artists.map(x=>x.name).join(" ")),st=n(i.name),z=(sa.includes(na)||na.includes(sa)?5:0);return z+(st===nt?5:(st.includes(nt)||nt.includes(st)?3:0))}
+}
+async function run(){
+ document.querySelector("#go").disabled=true;
+ let q=new URLSearchParams(location.search);
+ if(!q.get("code"))return auth();
+ try{
+  if(q.get("state")!==sessionStorage.st)throw Error("Authorization state mismatch.");
+  T=await token(q.get("code"));history.replaceState({},"",location.pathname);
+  log("Connected. Searching 100 tracks…");let u=[],m=[];
+  for(let i=0;i<TRACKS.length;i++){let x=await search(TRACKS[i].title,TRACKS[i].artist);if(x){u.push(x.uri);log("✓ "+(i+1)+"/"+TRACKS.length+" "+x.artists[0].name+" — "+x.name)}else{m.push(TRACKS[i]);log("✗ "+(i+1)+"/"+TRACKS.length+" "+TRACKS[i].artist+" — "+TRACKS[i].title)}}
+  let p=await api(T,"https://api.spotify.com/v1/me/playlists",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:"NOVA SOCIAL — NEON DAYDREAM",description:"Nova Social upbeat synth-pop, nu-disco, indie dance and electro-pop. Curated in sequence.",public:false,collaborative:false})});
+  for(let i=0;i<u.length;i+=100)await api(T,"https://api.spotify.com/v1/playlists/"+p.id+"/items",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({uris:u.slice(i,i+100)})});
+  log("\nDONE 🎉\nAdded: "+u.length+"\nNot found: "+m.length+"\n\n"+p.external_urls.spotify);
+  let a=document.createElement("a");a.href=p.external_urls.spotify;a.target="_blank";a.textContent="Open playlist in Spotify";a.style.color="#1db954";a.style.display="block";a.style.marginTop="16px";document.querySelector("#log").appendChild(a);
+ }catch(e){log("\nERROR: "+e.message);document.querySelector("#go").disabled=false}
+}
+let T;document.querySelector("#go").onclick=run;run();
+</script></body></html>
